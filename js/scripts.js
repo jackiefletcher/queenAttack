@@ -10,3 +10,26 @@ var queenAttack = function(pos1, pos2) {
     return false;
   }
 };
+
+$(document).ready(function() {
+  $("form#queen-attack").submit(function(event){
+    var startingX = parseInt($("input#posX1").val());
+    var startingY = parseInt($("input#posY1").val());
+    var endingX = parseInt($("input#posX2").val());
+    var endingY = parseInt($("input#posY2").val());
+
+    var startingPos = [startingX, startingY]
+    var endingPos = [endingX, endingY]
+
+    var result = queenAttack(startingPos, endingPos);
+
+    if (result) {
+      $(".message").text("This is a valid move.");
+    } else {
+      $(".message").text("That move isn't valid!");
+    }
+
+    $("#result").show();
+    event.preventDefault();
+  });
+});
